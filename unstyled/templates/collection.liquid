@@ -1,0 +1,39 @@
+{% paginate collection.products by 8 %}
+
+<!-- Handle the case if there are no products -->
+{% if collection.products.size == 0 %}
+0 found in this collection.
+{% else %}
+
+
+{{ collection.title }}
+
+{{ collection.description }}
+
+  {% for product in collection.products %}
+  	<div class = "product">
+		<div class = "image">
+	      	<a href="{{ product.url | within: collection }}"
+	       	title="{{ product.title }}">
+	       	<img src="{{ product.images.first | product_img_url: 'small' }}"
+	       	alt="{{ product.title }}" /></a>
+		</div>
+	    <div class = "details">
+	      <a href= "{{ product.url | within: collection }}">
+	      {{ product.title | truncate: 30 }}</a><br />
+	      <small>{{ product.price | money }}</small>
+	    </div>
+	</div>
+    
+  {% endfor %}
+
+
+
+{% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+{% endif %}
+
+<!-- The end of the no products / products if statement -->
+{% endif %}
+
+{% endpaginate %}

@@ -1,0 +1,15 @@
+<h2>{{page.title}}</h2>
+
+
+{% paginate blog.articles by 10 %}
+
+	
+	{% for article in blog.articles  %}
+		<h3><a href="{{article.url}}">{{ article.title }}</a></h3>
+
+		by {{ article.author }}
+		Posted on {{ article.created_at | date: "%B %d, '%y" }}
+	
+        {{ article.content }}
+      
+      	{{ paginate | default_pagination }}

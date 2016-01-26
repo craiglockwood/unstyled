@@ -1,0 +1,18 @@
+
+<h2>Your Cart</h2>
+{% if cart.item_count == 0 %} 
+You have an empty cart.
+  {% else %}
+
+
+
+	{% for item in cart.items %}
+
+		{{ item.title }}
+		{{ item.price | money }}
+		{{ item.quantity }}
+		{{ item.line_price | money }}
+	{% endfor %}
+
+
+{% endif %}

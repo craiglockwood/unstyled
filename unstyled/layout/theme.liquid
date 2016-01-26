@@ -1,0 +1,29 @@
+<html>
+<head>
+  	{{ content_for_header }}
+  	<title>{{ shop.name }} - {{ page_title }}</title>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	{{ 'blank.css'  | asset_url | stylesheet_tag }}
+</head>
+
+<body>
+	  <h1>{{ shop.name }}</h1>
+		
+		    	{% for link in linklists.main-menu.links %}
+			      <li class="menu-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+			    {% endfor %}
+			
+			<h3>Shopping Cart</h3>
+			
+				{% if cart.item_count == 0 %}
+					Your cart is currently empty
+				{% else %}
+					{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} <span>-</span> Total: {{cart.total_price | money_with_currency }} <span>-</span> <a href="/cart">View Cart</a>
+				{% endif %}			
+		
+
+  
+      {{ content_for_layout }}
+
+</body>
+</html>

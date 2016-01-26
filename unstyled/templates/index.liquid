@@ -1,0 +1,19 @@
+<h3>Front Page Products</h3>
+		{% for product in collections.frontpage.products limit:3  %}
+	   		<a href="{{product.url}}">{{ product.featured_image | product_img_url: 'medium' | img_tag }}</a>
+	   		<h3><a href="{{product.url}}">{{product.title}}</a></h3>
+	   		{{product.price_min | money}}
+	   	
+		{% endfor %}
+
+
+
+<h3>Recent posts from the blog</h3>
+		<ul id="blog-list">
+			{% for article in blogs.news.articles limit: 5 %}
+				<li>
+					<a href="{{ article.url }}">{{ article.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	
